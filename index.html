@@ -1,35 +1,7 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <script>
-(function () {
-  const params = new URLSearchParams(window.location.search);
-
-  // parâmetros importantes do Google Ads
-  const keep = ["gclid", "gbraid", "wbraid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
-
-  // pega só os que existem
-  const passthrough = new URLSearchParams();
-  keep.forEach(k => {
-    const v = params.get(k);
-    if (v) passthrough.set(k, v);
-  });
-
-  if ([...passthrough.keys()].length === 0) return;
-
-  // ajuste o seletor se seus botões não usam <a href="...">
-  const links = document.querySelectorAll('a[href*="pay.hotmart.com"], a[href*="hotmart.com"]');
-
-  links.forEach(a => {
-    try {
-      const url = new URL(a.href);
-      passthrough.forEach((v, k) => url.searchParams.set(k, v));
-      a.href = url.toString();
-    } catch (e) {}
-  });
-})();
-</script>
-
+  
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17964380078"></script>
 <script>
@@ -822,5 +794,34 @@
       });
     });
   </script>
+  <script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+
+  // parâmetros importantes do Google Ads
+  const keep = ["gclid", "gbraid", "wbraid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+
+  // pega só os que existem
+  const passthrough = new URLSearchParams();
+  keep.forEach(k => {
+    const v = params.get(k);
+    if (v) passthrough.set(k, v);
+  });
+
+  if ([...passthrough.keys()].length === 0) return;
+
+  // ajuste o seletor se seus botões não usam <a href="...">
+  const links = document.querySelectorAll('a[href*="pay.hotmart.com"], a[href*="hotmart.com"]');
+
+  links.forEach(a => {
+    try {
+      const url = new URL(a.href);
+      passthrough.forEach((v, k) => url.searchParams.set(k, v));
+      a.href = url.toString();
+    } catch (e) {}
+  });
+})();
+</script>
+
 </body>
 </html>
